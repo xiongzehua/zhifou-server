@@ -1,0 +1,36 @@
+#server:
+#    tomcat:
+#        uri-encoding: UTF-8
+#        max-threads: 1000
+#        min-spare-threads: 30
+#    port: 80
+#    connection-timeout: 500ms
+
+spring:
+    profiles:
+        active: dev
+#    mail:
+#        host: smtp.exmail.qq.com
+#        protocol: smtp
+#        username: xieyuqing@hengqijy.com
+#        password: King199092
+#        properties:
+#            mail:
+#                smtp:
+#                    starttls:
+#                        auth: true
+#                        enable: true
+#                        required: true
+
+
+
+#jwt-token:
+#      expire: 86400
+#      prolong: 7200
+#
+#pagehelper:
+#    helperDialect: mysql
+#    page-size-zero: true
+#    reasonable: true
+#    params: pageNum=start;pageSize=limit;pageSizeZero=zero;reasonable=heli;count=contsql
+#    row-bounds-with-count: true
