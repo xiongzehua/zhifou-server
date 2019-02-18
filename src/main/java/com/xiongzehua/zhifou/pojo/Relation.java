@@ -1,8 +1,21 @@
 package com.xiongzehua.zhifou.pojo;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.time.LocalDateTime;
 
+@Data
+@Accessors(chain = true)
 public class Relation {
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
     private Integer id;
 
     private Integer subjectId;
@@ -14,65 +27,4 @@ public class Relation {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
-
-    public Relation(Integer id, Integer subjectId, Integer objectId, Boolean isDeleted, LocalDateTime createTime, LocalDateTime updateTime) {
-        this.id = id;
-        this.subjectId = subjectId;
-        this.objectId = objectId;
-        this.isDeleted = isDeleted;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }
-
-    public Relation() {
-        super();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Integer subjectId) {
-        this.subjectId = subjectId;
-    }
-
-    public Integer getObjectId() {
-        return objectId;
-    }
-
-    public void setObjectId(Integer objectId) {
-        this.objectId = objectId;
-    }
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
 }

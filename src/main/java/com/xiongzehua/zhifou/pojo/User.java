@@ -1,8 +1,15 @@
 package com.xiongzehua.zhifou.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.time.LocalDateTime;
 
+@Data
+@Accessors(chain = true)
 public class User {
+    /** 数据库字段 */
     private Integer id;
 
     private String name;
@@ -11,79 +18,18 @@ public class User {
 
     private String password;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
     private String avatarUrl;
 
-    public User(Integer id, String name, String email, String password, LocalDateTime createTime, LocalDateTime updateTime, String avatarUrl) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.avatarUrl = avatarUrl;
-    }
+    /** 业务扩展 */
+    private String signInIp;
 
-    public User() {
-        super();
-    }
+    private LocalDateTime signInTime;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
-    }
+    private String token;
 }

@@ -1,4 +1,8 @@
 package com.xiongzehua.zhifou.service;
 
-public interface ProblemService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProblemService {
+
 }

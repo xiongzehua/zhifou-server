@@ -1,6 +1,7 @@
 package com.xiongzehua.zhifou.controller;
 
-import com.xiongzehua.zhifou.common.ResponseCode;
+import com.xiongzehua.zhifou.common.Response;
+import com.xiongzehua.zhifou.common.ResponseStatus;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/problem")
 public class ProblemController {
     @RequestMapping(value = "/listPage", method = {RequestMethod.POST, RequestMethod.GET})
-    public ResponseCode listPage() {
-        return ResponseCode.ok();
+    public Response listPage() {
+        // return Response.error(ResponseStatus.NEED_LOGIN, null);
+        return Response.error(ResponseStatus.ZIDINGYI, null);
     }
+
 }

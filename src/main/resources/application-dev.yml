@@ -3,12 +3,12 @@ mybatis:
     configuration:
         map-underscore-to-camel-case: true
 spring:
-#    redis:
-#        database: 0
-#        host: 192.168.145.137
-#        port: 6379
-#        password:       # 密码（默认为空）
-#        timeout: 15000ms  # 连接超时时长（毫秒）
+    redis:
+        database: 0
+        host: 192.168.145.137
+        port: 6379
+        password:       # 密码（默认为空）
+        timeout: 15000ms  # 连接超时时长（毫秒）
     datasource:
         # 使用阿里的Druid连接池
         type: com.alibaba.druid.pool.DruidDataSource
@@ -58,3 +58,6 @@ spring:
             login-username: admin
             # 登录密码
             login-password: 123456
+
+
+
