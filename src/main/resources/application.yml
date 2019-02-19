@@ -28,11 +28,6 @@ logging:
 #                        required: true
 
 
-
-#jwt-token:
-#      expire: 86400
-#      prolong: 7200
-#
 #pagehelper:
 #    helperDialect: mysql
 #    page-size-zero: true
