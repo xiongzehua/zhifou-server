@@ -114,4 +114,11 @@
       avatar_url = #{avatarUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where email = #{email}
+  </select>
 </mapper>

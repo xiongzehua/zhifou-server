@@ -1,6 +1,5 @@
 package com.xiongzehua.zhifou.DaoTest;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xiongzehua.zhifou.dao.ProblemMapper;
@@ -13,9 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import springfox.documentation.spring.web.json.Json;
-
-import javax.sql.DataSource;
 
 /**
  * Created by xiongzehua on 2019/2/13.
