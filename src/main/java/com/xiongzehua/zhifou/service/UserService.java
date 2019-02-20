@@ -1,9 +1,9 @@
 package com.xiongzehua.zhifou.service;
 
 import com.xiongzehua.zhifou.common.Response;
-import com.xiongzehua.zhifou.common.ResponseStatus;
+import com.xiongzehua.zhifou.common.BusinessStatus;
 import com.xiongzehua.zhifou.dao.UserMapper;
-import com.xiongzehua.zhifou.exception.RRException;
+import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.User;
 import com.xiongzehua.zhifou.util.TokenUtil;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -41,7 +41,7 @@ public class UserService {
         if (result > 0) {
             return Response.success("注册成功", user);
         } else {
-            return Response.error(ResponseStatus.ERROR, user);
+            return Response.error(BusinessStatus.ERROR, user);
         }
     }
 
@@ -54,10 +54,11 @@ public class UserService {
     public User checkUser(String email, String password) {
         User user = userMapper.getByEmail(email);
         if (user == null) {
-            throw new RRException("该用户不存在");
+            throw new BusinessException(BusinessStatus.ACCOUNT_NOt_EXIST);
         }
         if (!user.getPassword().equals(new Sha256Hash(password).toHex())) {
-            throw new RRException("用户密码错误");
+            throw new BusinessException(BusinessStatus.ACCOUNT_WRONG_PASSWORD);
+
         }
         return user;
     }

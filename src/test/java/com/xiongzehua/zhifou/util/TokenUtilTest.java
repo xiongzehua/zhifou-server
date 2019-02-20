@@ -1,5 +1,6 @@
 package com.xiongzehua.zhifou.util;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
@@ -12,7 +13,7 @@ public class TokenUtilTest {
     public void test1() throws UnsupportedEncodingException {
         String token = TokenUtil.create(1, "123456");
         System.out.println(token);
-//        Assert.assertEquals("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiemhpZm91IiwiZXhwIjoxNTUwNTk1OTM1fQ.Iaxfw7ITg6x0iqOnqXaxe5sBjRlVrjYU1FdSIMLZSlc", token);
+        Assert.assertEquals("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiemhpZm91IiwiZXhwIjoxNTUwNTk1OTM1fQ.Iaxfw7ITg6x0iqOnqXaxe5sBjRlVrjYU1FdSIMLZSlc", token);
     }
 
     @Test

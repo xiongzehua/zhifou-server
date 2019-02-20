@@ -10,27 +10,27 @@ public class Response<T> {
     private T data;
 
     public static <T> Response<T> success(T data){
-        return new Response<T>(ResponseStatus.SUCCESS,  data);
+        return new Response<T>(BusinessStatus.SUCCESS,  data);
     }
 
     public static <T> Response<T> success(String message, T data){
-        return new Response<T>(ResponseStatus.SUCCESS.getCode(), message,  data);
+        return new Response<T>(BusinessStatus.SUCCESS.getCode(), message,  data);
     }
 
-    public static <T> Response<T> success(ResponseStatus responseStatus, T data){
-        return new Response<T>(responseStatus, data);
+    public static <T> Response<T> success(BusinessStatus businessStatus, T data){
+        return new Response<T>(businessStatus, data);
     }
 
     public static <T> Response<T> error(T data){
-        return new Response<T>(ResponseStatus.ERROR, data);
+        return new Response<T>(BusinessStatus.ERROR, data);
     }
 
     public static <T> Response<T> error(String message, T data){
-        return new Response<T>(ResponseStatus.ERROR.getCode(), message,  data);
+        return new Response<T>(BusinessStatus.ERROR.getCode(), message,  data);
     }
 
-    public static <T> Response<T> error(ResponseStatus responseStatus, T data){
-        return new Response<T>(responseStatus, data);
+    public static <T> Response<T> error(BusinessStatus businessStatus, T data){
+        return new Response<T>(businessStatus, data);
     }
 
     public Response() {
@@ -42,9 +42,9 @@ public class Response<T> {
         this.data = data;
     }
 
-    public Response(ResponseStatus responseStatus, T data) {
-        this.code = responseStatus.getCode();
-        this.message = responseStatus.getMessage();
+    public Response(BusinessStatus businessStatus, T data) {
+        this.code = businessStatus.getCode();
+        this.message = businessStatus.getMessage();
         this.data = data;
     }
 
