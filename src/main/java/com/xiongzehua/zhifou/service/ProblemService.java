@@ -1,5 +1,8 @@
 package com.xiongzehua.zhifou.service;
 
+import com.xiongzehua.zhifou.common.Response;
+import com.xiongzehua.zhifou.dao.ProblemMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,5 +13,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProblemService {
+
+    @Autowired
+    private ProblemMapper problemMapper;
+
+    public Response listPage() {
+        return Response.success(problemMapper.listPage());
+    }
 
 }

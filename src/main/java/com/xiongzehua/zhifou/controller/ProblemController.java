@@ -1,10 +1,11 @@
 package com.xiongzehua.zhifou.controller;
 
 import com.xiongzehua.zhifou.common.Response;
-import com.xiongzehua.zhifou.common.ResponseStatus;
+import com.xiongzehua.zhifou.service.ProblemService;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,14 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: guomiaomiao
  * @date 2019/2/15 15:38:49
  */
-@Api(tags = "登录接口", description = "ProblemController")
+@Api(tags = "问题接口", description = "ProblemController")
 @RestController
 @RequestMapping("/problem")
 public class ProblemController {
-    @RequestMapping(value = "/listPage", method = {RequestMethod.POST, RequestMethod.GET})
+
+    @Autowired
+    private ProblemService problemService;
+
+    @GetMapping(value = "/listPage")
     public Response listPage() {
-        // return Response.error(ResponseStatus.NEED_LOGIN, null);
-        return Response.error(ResponseStatus.ZIDINGYI, null);
+        return problemService.listPage();
     }
 
 }

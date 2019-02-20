@@ -3,6 +3,7 @@ package com.xiongzehua.zhifou.pojo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Accessors(chain = true)
-public class Problem {
+public class Problem implements Serializable {
     private Integer id;
 
     private String title;
