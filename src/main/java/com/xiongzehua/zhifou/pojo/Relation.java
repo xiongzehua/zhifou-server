@@ -5,6 +5,12 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
+/**
+ * 回答实体类
+ * @author xiongzehua
+ * @date 2019/2/15 15:38:49
+ */
+
 @Data
 @Accessors(chain = true)
 public class Relation {
