@@ -35,14 +35,11 @@ public class UserService {
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
-    public Response signUp(User user) {
-        user.setPassword(new Sha256Hash(user.getPassword()).toHex()).setCreateTime(LocalDateTime.now());
-        int result = userMapper.insert(user);
-        if (result > 0) {
-            return Response.success("注册成功", user);
-        } else {
-            return Response.error(BusinessStatus.ERROR, user);
-        }
+    public User signUp(User user) {
+        user.setPassword(new Sha256Hash(user.getPassword()).toHex())
+                .setCreateTime(LocalDateTime.now());
+        userMapper.insert(user);
+        return new User().setId(user.getId());
     }
 
     /**

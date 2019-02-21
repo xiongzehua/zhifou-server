@@ -1,6 +1,7 @@
 package com.xiongzehua.zhifou.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Accessors(chain = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
     /** 数据库字段 */
     private Integer id;
