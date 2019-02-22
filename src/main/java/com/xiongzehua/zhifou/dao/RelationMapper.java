@@ -2,7 +2,9 @@ package com.xiongzehua.zhifou.dao;
 
 import com.xiongzehua.zhifou.pojo.Relation;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @Mapper
 public interface RelationMapper {
     int deleteByPrimaryKey(Integer id);

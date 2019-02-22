@@ -50,9 +50,8 @@ public class ProblemService extends BaseService {
         int result = problemMapper.deleteByPrimaryKey(id);
         if (result < 1) {
             throw new BusinessException(BusinessStatus.DELETE_FAILUER);
-        } else {
-            return problem;
         }
+        return problem;
     }
 
     public Problem updateOneProblem(Problem problem) {

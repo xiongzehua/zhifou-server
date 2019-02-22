@@ -1,6 +1,7 @@
 package com.xiongzehua.zhifou.controller;
 
 import com.xiongzehua.zhifou.common.Response;
+import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.User;
 import com.xiongzehua.zhifou.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

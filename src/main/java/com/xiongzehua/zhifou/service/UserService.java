@@ -53,7 +53,6 @@ public class UserService {
         }
         if (!user1.getPassword().equals(new Sha256Hash(user.getPassword()).toHex())) {
             throw new BusinessException(BusinessStatus.ACCOUNT_WRONG_PASSWORD);
-
         }
         try {
             user.setToken(TokenUtil.create(user.getId(), user.getPassword()));
