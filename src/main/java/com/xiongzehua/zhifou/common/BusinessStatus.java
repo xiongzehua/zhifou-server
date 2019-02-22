@@ -12,6 +12,14 @@ public enum BusinessStatus {
 
     ACCOUNT_WRONG_PASSWORD(1, "密码错误"),
     ACCOUNT_NOt_EXIST(1, "账号不存在"),
+
+    ADD_FAILURE(1, "增加失败"),
+
+    GET_FAILURE(1, "请求数据失败"),
+
+    DELETE_FAILUER(1, "删除数据失败"),
+
+    UPDATE_FAILURE(1, "更新数据失败"),
     ;
 
     private final int code;

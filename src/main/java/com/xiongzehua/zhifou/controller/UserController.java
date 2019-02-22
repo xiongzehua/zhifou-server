@@ -38,8 +38,7 @@ public class UserController {
      */
     @PostMapping(value = "/signIn")
     public Response signIn(@RequestBody User user) {
-        User signUser = userService.checkUser(user.getEmail(), user.getPassword());
-        return Response.success(userService.doSign(signUser));
+        return Response.success(userService.doSign(user));
     }
 
 }

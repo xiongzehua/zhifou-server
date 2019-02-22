@@ -1,6 +1,5 @@
 package com.xiongzehua.zhifou.service;
 
-import com.xiongzehua.zhifou.common.Response;
 import com.xiongzehua.zhifou.common.BusinessStatus;
 import com.xiongzehua.zhifou.dao.UserMapper;
 import com.xiongzehua.zhifou.exception.BusinessException;
@@ -43,29 +42,19 @@ public class UserService {
     }
 
     /**
-     * 用户登录功能
-     * @param email 邮箱
-     * @param password 密码
-     * @return
-     */
-    public User checkUser(String email, String password) {
-        User user = userMapper.getByEmail(email);
-        if (user == null) {
-            throw new BusinessException(BusinessStatus.ACCOUNT_NOt_EXIST);
-        }
-        if (!user.getPassword().equals(new Sha256Hash(password).toHex())) {
-            throw new BusinessException(BusinessStatus.ACCOUNT_WRONG_PASSWORD);
-
-        }
-        return user;
-    }
-
-    /**
      * 执行登录逻辑
      * @param user
      * @return
      */
     public User doSign(User user) {
+        User user1 = userMapper.getByEmail(user.getEmail());
+        if (user1 == null) {
+            throw new BusinessException(BusinessStatus.ACCOUNT_NOt_EXIST);
+        }
+        if (!user1.getPassword().equals(new Sha256Hash(user.getPassword()).toHex())) {
+            throw new BusinessException(BusinessStatus.ACCOUNT_WRONG_PASSWORD);
+
+        }
         try {
             user.setToken(TokenUtil.create(user.getId(), user.getPassword()));
         } catch (UnsupportedEncodingException e) {
