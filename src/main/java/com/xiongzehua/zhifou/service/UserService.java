@@ -63,4 +63,23 @@ public class UserService {
         return user;
     }
 
+    public User updateUser(User user) {
+        user.setUpdateTime(LocalDateTime.now());
+        int result = userMapper.updateByPrimaryKeySelective(user);
+        if (result < 1) {
+            throw new BusinessException(BusinessStatus.UPDATE_FAILURE);
+        } else {
+            return user;
+        }
+    }
+
+    public User getUser(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        if (null == user) {
+            throw new BusinessException(BusinessStatus.GET_FAILURE);
+        } else {
+            return user;
+        }
+    }
+
 }
