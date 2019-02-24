@@ -1,7 +1,6 @@
 package com.xiongzehua.zhifou.controller;
 
 import com.xiongzehua.zhifou.common.Response;
-import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.User;
 import com.xiongzehua.zhifou.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,25 @@ public class UserController {
     @PostMapping(value = "/signIn")
     public Response signIn(@RequestBody User user) {
         return Response.success(userService.doSign(user));
+    }
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    @PostMapping(value = "/updateUser")
+    public Response updateUser(@RequestBody User user) {
+        return Response.success(userService.updateUser(user));
+    }
+
+    /**
+     * 获得指定用户信息
+     * @return
+     */
+    @GetMapping(value = "/getUser/{id}")
+    public Response getUser(@PathVariable("id") Integer id) {
+        return Response.success(userService.getUser(id));
     }
 
 }

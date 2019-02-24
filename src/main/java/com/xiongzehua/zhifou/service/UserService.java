@@ -28,13 +28,6 @@ public class UserService {
     private UserMapper userMapper;
     @Autowired
     RedisTemplate redisTemplate;
-    @Autowired
-    UserService userService;
-
-    public User getUser() {
-        return (User) SecurityUtils.getSubject().getPrincipal();
-    }
-
 
     /**
      * 用户注册功能
@@ -70,9 +63,27 @@ public class UserService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        redisTemplate.opsForValue().set("zhifou:user:" + user.getId(), user);
+        redisTemplate.opsForValue().set("zhifou:user:token", user);
         return user;
     }
 
+    public User updateUser(User user) {
+        user.setUpdateTime(LocalDateTime.now());
+        int result = userMapper.updateByPrimaryKeySelective(user);
+        if (result < 1) {
+            throw new BusinessException(BusinessStatus.UPDATE_FAILURE);
+        } else {
+            return user;
+        }
+    }
+
+    public User getUser(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        if (null == user) {
+            throw new BusinessException(BusinessStatus.GET_FAILURE);
+        } else {
+            return user;
+        }
+    }
 
 }
