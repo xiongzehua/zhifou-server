@@ -4,9 +4,11 @@ import com.xiongzehua.zhifou.common.BusinessStatus;
 import com.xiongzehua.zhifou.dao.ProblemMapper;
 import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.Problem;
+import com.xiongzehua.zhifou.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +20,8 @@ import java.util.List;
  */
 
 @Service
-public class ProblemService extends BaseService {
+public class ProblemService  {
+    @Autowired UserService userService;
 
     @Autowired
     private ProblemMapper problemMapper;
@@ -37,7 +40,7 @@ public class ProblemService extends BaseService {
     }
 
     public Problem addProblem(Problem problem) {
-        problem.setUserId(1).setCreateTime(LocalDateTime.now());
+        problem.setUserId(TokenUtil.getSub()).setCreateTime(LocalDateTime.now());
         int result = problemMapper.insert(problem);
         if (result < 1) {
             throw new BusinessException(BusinessStatus.ADD_FAILURE);
@@ -62,6 +65,10 @@ public class ProblemService extends BaseService {
         } else {
             return problem;
         }
+    }
+
+    public String getToken(HttpServletRequest request) {
+        return request.getHeader("token");
     }
 
 }

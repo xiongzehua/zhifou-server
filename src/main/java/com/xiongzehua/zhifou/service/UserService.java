@@ -5,6 +5,7 @@ import com.xiongzehua.zhifou.dao.UserMapper;
 import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.User;
 import com.xiongzehua.zhifou.util.TokenUtil;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -27,14 +28,24 @@ public class UserService {
     private UserMapper userMapper;
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    UserService userService;
+
+    public User getUser() {
+        return (User) SecurityUtils.getSubject().getPrincipal();
+    }
+
 
     /**
      * 用户注册功能
      * @param user 用户信息
      * @return
      */
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public User signUp(User user) {
+        if (null != userMapper.getByEmail(user.getEmail())) {
+            throw new BusinessException(BusinessStatus.ACCOUNT_EMAIL_USED);
+        }
         user.setPassword(new Sha256Hash(user.getPassword()).toHex())
                 .setCreateTime(LocalDateTime.now());
         userMapper.insert(user);
@@ -59,8 +70,9 @@ public class UserService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        redisTemplate.opsForValue().set("zhifou:user:token", user);
+        redisTemplate.opsForValue().set("zhifou:user:" + user.getId(), user);
         return user;
     }
+
 
 }

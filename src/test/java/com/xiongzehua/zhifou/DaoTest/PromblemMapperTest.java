@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xiongzehua.zhifou.dao.ProblemMapper;
 import com.xiongzehua.zhifou.dao.UserMapper;
 import com.xiongzehua.zhifou.pojo.User;
+import org.apache.shiro.SecurityUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +51,10 @@ public class PromblemMapperTest {
         System.out.println(objectMapper.writeValueAsString(user));
         redisTemplate.opsForValue().set("user11", user);
     }
+
+    @Test
+    public void test4() {
+        System.out.println("user = " + (User) SecurityUtils.getSubject().getPrincipal());
+    }
+
 }

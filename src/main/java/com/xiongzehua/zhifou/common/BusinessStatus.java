@@ -12,6 +12,7 @@ public enum BusinessStatus {
 
     ACCOUNT_WRONG_PASSWORD(1, "密码错误"),
     ACCOUNT_NOt_EXIST(1, "账号不存在"),
+    ACCOUNT_EMAIL_USED(1, "该邮箱已被注册"),
 
     ADD_FAILURE(1, "增加失败"),
 
