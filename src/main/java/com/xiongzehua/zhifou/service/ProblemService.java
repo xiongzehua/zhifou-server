@@ -4,7 +4,7 @@ import com.xiongzehua.zhifou.common.BusinessStatus;
 import com.xiongzehua.zhifou.dao.ProblemMapper;
 import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.Problem;
-import com.xiongzehua.zhifou.util.TokenUtil;
+import com.xiongzehua.zhifou.util.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +26,8 @@ public class ProblemService  {
     @Autowired
     private ProblemMapper problemMapper;
 
-    public List<Problem> listPage() {
-        return problemMapper.listPage();
+    public List<Problem> listPage(PageQuery pageQuery) {
+        return problemMapper.listPage(pageQuery);
     }
 
     public Problem getOneProblem(Integer id) {
@@ -40,7 +40,7 @@ public class ProblemService  {
     }
 
     public Problem addProblem(Problem problem) {
-        problem.setUserId(TokenUtil.getSub()).setCreateTime(LocalDateTime.now());
+        problem.setUserId(1).setCreateTime(LocalDateTime.now());
         int result = problemMapper.insert(problem);
         if (result < 1) {
             throw new BusinessException(BusinessStatus.ADD_FAILURE);

@@ -3,9 +3,12 @@ package com.xiongzehua.zhifou.controller;
 import com.xiongzehua.zhifou.common.Response;
 import com.xiongzehua.zhifou.pojo.Problem;
 import com.xiongzehua.zhifou.service.ProblemService;
+import com.xiongzehua.zhifou.util.PageInfo;
+import com.xiongzehua.zhifou.util.PageQuery;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
 
 /**
  * 问题
@@ -24,9 +27,11 @@ public class ProblemController {
      * 请求问题列表
      * @return 返回问题列表
      */
-    @GetMapping(value = "/listPage")
-    public Response listPage() {
-        return Response.success(problemService.listPage());
+    @PostMapping(value = "/listPage")
+    public Response listPage(@RequestParam HashMap<String, Object> pageParam,
+                             @RequestBody(required = false) HashMap<String, Object> queryParam) {
+        PageInfo<Problem> problemPageInfo = new PageInfo<>(problemService.listPage(PageQuery.build(pageParam, queryParam)));
+        return Response.success(problemPageInfo);
     }
 
     /**

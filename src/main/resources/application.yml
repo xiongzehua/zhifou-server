@@ -14,6 +14,13 @@ spring:
 logging:
   com.xiongzehua.zhifou.dao: debug
 
+pagehelper:
+    helperDialect: mysql
+    page-size-zero: true
+    reasonable: true
+    params: pageNum=start;pageSize=limit;pageSizeZero=zero;reasonable=heli;count=contsql
+    row-bounds-with-count: true
+
 #    mail:
 #        host: smtp.exmail.qq.com
 #        protocol: smtp

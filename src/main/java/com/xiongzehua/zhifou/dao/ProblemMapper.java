@@ -1,6 +1,7 @@
 package com.xiongzehua.zhifou.dao;
 
 import com.xiongzehua.zhifou.pojo.Problem;
+import com.xiongzehua.zhifou.util.PageQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +24,5 @@ public interface ProblemMapper {
 
     int updateByPrimaryKey(Problem record);
 
-    List<Problem> listPage();
+    List<Problem> listPage(PageQuery pageQuery);
 }
