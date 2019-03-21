@@ -5,7 +5,7 @@ mybatis:
 spring:
     redis:
         database: 0
-        host: 192.168.145.137
+        host: 192.168.145.138
         port: 6379
         password:       # 密码（默认为空）
         timeout: 15000ms  # 连接超时时长（毫秒）
@@ -14,7 +14,7 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
         # 填写你数据库的url、登录名、密码和数据库名
-        url: jdbc:mysql://192.168.145.137:3306/zhifou_test?useSSL=false&characterEncoding=utf8
+        url: jdbc:mysql://192.168.145.138:3306/zhifou_test?useSSL=false&characterEncoding=utf8
         username: root
         password: 123456
         druid:

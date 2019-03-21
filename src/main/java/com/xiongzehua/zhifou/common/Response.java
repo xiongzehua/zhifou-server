@@ -3,6 +3,8 @@ package com.xiongzehua.zhifou.common;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.context.support.AbstractApplicationContext;
 
 /**
  * Created by xiongzehua on 2019/2/16.

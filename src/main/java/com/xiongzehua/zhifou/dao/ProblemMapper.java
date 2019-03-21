@@ -1,6 +1,6 @@
 package com.xiongzehua.zhifou.dao;
 
-import com.xiongzehua.zhifou.pojo.Problem;
+import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.util.PageQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -12,17 +12,17 @@ import java.util.List;
 public interface ProblemMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Problem record);
+    int insert(Talk record);
 
-    int insertSelective(Problem record);
+    int insertSelective(Talk record);
 
-    Problem selectByPrimaryKey(Integer id);
+    Talk selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Problem record);
+    int updateByPrimaryKeySelective(Talk record);
 
-    int updateByPrimaryKeyWithBLOBs(Problem record);
+    int updateByPrimaryKeyWithBLOBs(Talk record);
 
-    int updateByPrimaryKey(Problem record);
+    int updateByPrimaryKey(Talk record);
 
-    List<Problem> listPage(PageQuery pageQuery);
+    List<Talk> listPage(PageQuery pageQuery);
 }

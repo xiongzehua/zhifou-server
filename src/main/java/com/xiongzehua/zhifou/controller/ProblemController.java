@@ -1,7 +1,7 @@
 package com.xiongzehua.zhifou.controller;
 
 import com.xiongzehua.zhifou.common.Response;
-import com.xiongzehua.zhifou.pojo.Problem;
+import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.service.ProblemService;
 import com.xiongzehua.zhifou.util.PageInfo;
 import com.xiongzehua.zhifou.util.PageQuery;
@@ -30,7 +30,7 @@ public class ProblemController {
     @PostMapping(value = "/listPage")
     public Response listPage(@RequestParam HashMap<String, Object> pageParam,
                              @RequestBody(required = false) HashMap<String, Object> queryParam) {
-        PageInfo<Problem> problemPageInfo = new PageInfo<>(problemService.listPage(PageQuery.build(pageParam, queryParam)));
+        PageInfo<Talk> problemPageInfo = new PageInfo<>(problemService.listPage(PageQuery.build(pageParam, queryParam)));
         return Response.success(problemPageInfo);
     }
 
@@ -46,12 +46,12 @@ public class ProblemController {
 
     /**
      * 增加一个问题
-     * @param problem 问题详情(主题与内容)
+     * @param talk 问题详情(主题与内容)
      * @return
      */
     @PostMapping(value = "/addProblem")
-    public Response addProblem(@RequestBody Problem problem) {
-        return Response.success(problemService.addProblem(problem));
+    public Response addProblem(@RequestBody Talk talk) {
+        return Response.success(problemService.addProblem(talk));
     }
 
     /**
@@ -66,12 +66,12 @@ public class ProblemController {
 
     /**
      * 修改一个问题
-     * @param problem 修改问题的属性
+     * @param talk 修改问题的属性
      * @return
      */
     @PostMapping("/updateOneProblem")
-    public Response updateOneProblem(@RequestBody Problem problem) {
-        return Response.success(problemService.updateOneProblem(problem));
+    public Response updateOneProblem(@RequestBody Talk talk) {
+        return Response.success(problemService.updateOneProblem(talk));
     }
 
 

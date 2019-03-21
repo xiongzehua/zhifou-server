@@ -14,10 +14,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Accessors(chain = true)
-public class Problem implements Serializable {
+public class Talk implements Serializable {
     private Integer id;
-
-    private String title;
 
     private Integer userId;
 

@@ -3,8 +3,7 @@ package com.xiongzehua.zhifou.service;
 import com.xiongzehua.zhifou.common.BusinessStatus;
 import com.xiongzehua.zhifou.dao.ProblemMapper;
 import com.xiongzehua.zhifou.exception.BusinessException;
-import com.xiongzehua.zhifou.pojo.Problem;
-import com.xiongzehua.zhifou.util.PageQuery;
+import com.xiongzehua.zhifou.pojo.Talk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,44 +25,44 @@ public class ProblemService  {
     @Autowired
     private ProblemMapper problemMapper;
 
-    public List<Problem> listPage(PageQuery pageQuery) {
-        return problemMapper.listPage(pageQuery);
+    public List<Talk> listPage() {
+        return problemMapper.listPage();
     }
 
-    public Problem getOneProblem(Integer id) {
-        Problem problem = problemMapper.selectByPrimaryKey(id);
-        if (null == problem) {
+    public Talk getOneProblem(Integer id) {
+        Talk talk = problemMapper.selectByPrimaryKey(id);
+        if (null == talk) {
             throw new BusinessException(BusinessStatus.GET_FAILURE);
         } else {
-            return problem;
+            return talk;
         }
     }
 
-    public Problem addProblem(Problem problem) {
-        problem.setUserId(1).setCreateTime(LocalDateTime.now());
-        int result = problemMapper.insert(problem);
+    public Talk addProblem(Talk talk) {
+//        talk.setUserId((int)TokenUtil.getSub(null)).setCreateTime(LocalDateTime.now());
+        int result = problemMapper.insert(talk);
         if (result < 1) {
             throw new BusinessException(BusinessStatus.ADD_FAILURE);
         }
-        return problem;
+        return talk;
     }
 
-    public Problem deleteOneProblem(Integer id) {
-        Problem problem = problemMapper.selectByPrimaryKey(id);
+    public Talk deleteOneProblem(Integer id) {
+        Talk talk = problemMapper.selectByPrimaryKey(id);
         int result = problemMapper.deleteByPrimaryKey(id);
         if (result < 1) {
             throw new BusinessException(BusinessStatus.DELETE_FAILUER);
         }
-        return problem;
+        return talk;
     }
 
-    public Problem updateOneProblem(Problem problem) {
-        problem.setUpdateTime(LocalDateTime.now());
-        int result = problemMapper.updateByPrimaryKeySelective(problem);
+    public Talk updateOneProblem(Talk talk) {
+        talk.setUpdateTime(LocalDateTime.now());
+        int result = problemMapper.updateByPrimaryKeySelective(talk);
         if (result < 1) {
             throw new BusinessException(BusinessStatus.UPDATE_FAILURE);
         } else {
-            return problem;
+            return talk;
         }
     }
 

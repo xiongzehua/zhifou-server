@@ -61,7 +61,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="problem" domainObjectName="Problem" enableCountByExample="false" selectByExampleQueryId="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
+        <table tableName="talk" domainObjectName="Problem" enableCountByExample="false" selectByExampleQueryId="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
         <table tableName="relation" domainObjectName="Relation" enableCountByExample="false" selectByExampleQueryId="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
         <table tableName="user" domainObjectName="User" enableCountByExample="false" selectByExampleQueryId="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
     </context>
