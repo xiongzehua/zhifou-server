@@ -36,4 +36,8 @@ public class TalkServiceTest {
         }
     }
 
+    @Test
+    public void listTalkByStar() {
+
+    }
 }

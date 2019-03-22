@@ -27,12 +27,4 @@ public class UserStarTalkServiceTest {
         UserStarTalk userStarTalk2 = new UserStarTalk().setUserId(2).setTalkId(1);
         userStarTalkService.createUserStarTalk(userStarTalk2);
     }
-
-    @Test
-    public void listTalkByStarTest() {
-        List<Talk> talkList = userStarTalkService.listTalkByStar(1, 10);
-        for (Talk talk : talkList) {
-            log.info(talk.toString());
-        }
-    }
 }
