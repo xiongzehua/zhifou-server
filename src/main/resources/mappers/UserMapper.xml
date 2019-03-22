@@ -23,7 +23,7 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.User" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" keyProperty="id" parameterType="com.xiongzehua.zhifou.pojo.User" useGeneratedKeys="true">
     insert into user (id, name, email, 
       password, create_time, update_time, 
       avatar_url)
