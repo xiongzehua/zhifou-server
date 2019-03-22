@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 @Service
 public class UserStarTalkService {
 
-    public final static String TALK = "talk";
-
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -28,11 +26,11 @@ public class UserStarTalkService {
         Integer talkId = userStarTalk.getTalkId();
         if (redisTemplate.opsForSet().isMember("talk:" + talkId + ":staredBy", userId)) {
             redisTemplate.opsForSet().remove("talk:" + talkId + ":staredBy", userId);
-            // 写数据库
+            // TODO 写数据库流水
             userStarTalkMapper.deleteByTalkIdAndUserId(talkId, userId);
         } else {
             redisTemplate.opsForSet().add("talk:" + talkId + ":staredBy", userId);
-            // 写数据库
+            // TODO 写数据库流水
             userStarTalk.setCreateTime(LocalDateTime.now());
             userStarTalkMapper.insert(userStarTalk);
         }

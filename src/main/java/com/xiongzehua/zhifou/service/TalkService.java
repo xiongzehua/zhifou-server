@@ -34,6 +34,7 @@ public class TalkService {
      * @return
      */
     public List<Talk> listTalkByTime() {
+        // TODO 点赞数 评论数 用户信息
         List<Talk> talkList = talkMapper.listTalkByTime();
         return talkList;
     }
@@ -43,8 +44,9 @@ public class TalkService {
      * @return 结果列表
      */
     public List<Talk> listTalkByStar(Integer page) {
+        // TODO 点赞数 评论数 用户信息
         Set<Integer> talkIds = redisTemplate.opsForZSet().range("talk:staredNumber", -(10*page), -(10*page-9));
-        // TODO 查数据库通过talkIds拿到talk,加入list
+        // TODO set好像是乱序的
         ArrayList<Integer> list = new ArrayList<>(talkIds);
         List<Talk> talkList = new ArrayList<>();
         for (int i = 9; i > -1; i--) {
