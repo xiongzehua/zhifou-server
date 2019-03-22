@@ -30,7 +30,7 @@ public class ProblemController {
     @PostMapping(value = "/listPage")
     public Response listPage(@RequestParam HashMap<String, Object> pageParam,
                              @RequestBody(required = false) HashMap<String, Object> queryParam) {
-        PageInfo<Talk> problemPageInfo = new PageInfo<>(problemService.listPage(PageQuery.build(pageParam, queryParam)));
+        PageInfo<Talk> problemPageInfo = new PageInfo<>(problemService.listPage());
         return Response.success(problemPageInfo);
     }
 

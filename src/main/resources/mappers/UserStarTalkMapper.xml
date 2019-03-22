@@ -23,7 +23,7 @@
   <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
     insert into user_star_talk (id, talk_id, create_id, 
       create_time)
-    values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{createId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
@@ -35,7 +35,7 @@
       <if test="talkId != null">
         talk_id,
       </if>
-      <if test="createId != null">
+      <if test="userId != null">
         create_id,
       </if>
       <if test="createTime != null">
@@ -49,8 +49,8 @@
       <if test="talkId != null">
         #{talkId,jdbcType=INTEGER},
       </if>
-      <if test="createId != null">
-        #{createId,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -63,8 +63,8 @@
       <if test="talkId != null">
         talk_id = #{talkId,jdbcType=INTEGER},
       </if>
-      <if test="createId != null">
-        create_id = #{createId,jdbcType=INTEGER},
+      <if test="userId != null">
+        create_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -75,7 +75,7 @@
   <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
     update user_star_talk
     set talk_id = #{talkId,jdbcType=INTEGER},
-      create_id = #{createId,jdbcType=INTEGER},
+      create_id = #{userId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

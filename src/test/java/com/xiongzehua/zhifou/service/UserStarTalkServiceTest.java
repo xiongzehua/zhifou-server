@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -22,11 +21,11 @@ public class UserStarTalkServiceTest {
 
     @Test
     public void createUserStarTalkTest() {
-        UserStarTalk userStarTalk = new UserStarTalk();
-        userStarTalk.setTalkId(1);
-        userStarTalk.setCreateId(2);
-        userStarTalk.setCreateTime(LocalDateTime.now());
-        userStarTalkService.createUserStarTalk(userStarTalk);
+        UserStarTalk userStarTalk1 = new UserStarTalk().setUserId(1).setTalkId(1);
+        userStarTalkService.createUserStarTalk(userStarTalk1);
+
+        UserStarTalk userStarTalk2 = new UserStarTalk().setUserId(2).setTalkId(1);
+        userStarTalkService.createUserStarTalk(userStarTalk2);
     }
 
     @Test

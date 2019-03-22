@@ -24,5 +24,5 @@ public interface ProblemMapper {
 
     int updateByPrimaryKey(Talk record);
 
-    List<Talk> listPage(PageQuery pageQuery);
+    List<Talk> listPage();
 }

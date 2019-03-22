@@ -22,7 +22,6 @@ public class TalkServiceTest {
     public void createTalkTest() {
         Talk talk = new Talk();
         talk.setContent("第四篇微博");
-        talk.setCreateId(4);
         int result = talkService.createTalk(talk);
         log.info("result = " + result);
         log.info("talk = " + talk.toString());

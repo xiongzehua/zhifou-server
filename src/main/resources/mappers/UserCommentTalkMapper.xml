@@ -24,7 +24,7 @@
   <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
     insert into user_comment_talk (id, talk_id, create_id, 
       content, create_time)
-    values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{createId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
@@ -36,7 +36,7 @@
       <if test="talkId != null">
         talk_id,
       </if>
-      <if test="createId != null">
+      <if test="userId != null">
         create_id,
       </if>
       <if test="content != null">
@@ -53,8 +53,8 @@
       <if test="talkId != null">
         #{talkId,jdbcType=INTEGER},
       </if>
-      <if test="createId != null">
-        #{createId,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
@@ -70,8 +70,8 @@
       <if test="talkId != null">
         talk_id = #{talkId,jdbcType=INTEGER},
       </if>
-      <if test="createId != null">
-        create_id = #{createId,jdbcType=INTEGER},
+      <if test="userId != null">
+        create_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
@@ -85,7 +85,7 @@
   <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
     update user_comment_talk
     set talk_id = #{talkId,jdbcType=INTEGER},
-      create_id = #{createId,jdbcType=INTEGER},
+      create_id = #{userId,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

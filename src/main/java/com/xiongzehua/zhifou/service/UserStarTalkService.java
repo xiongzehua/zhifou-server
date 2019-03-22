@@ -1,5 +1,6 @@
 package com.xiongzehua.zhifou.service;
 
+import com.xiongzehua.zhifou.config.RedisConfig;
 import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.pojo.UserStarTalk;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class UserStarTalkService {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisConfig redisConfig;
 
     /**
      * 对说说进行点赞
@@ -25,18 +28,26 @@ public class UserStarTalkService {
      * @return
      */
     public void createUserStarTalk(UserStarTalk userStarTalk) {
-        Integer userId = userStarTalk.getTalkId();
+        Integer userId = userStarTalk.getUserId();
         Integer talkId = userStarTalk.getTalkId();
-        userStarTalk.setCreateTime(LocalDateTime.now());
-        Set<Integer> userSet = (Set<Integer>)redisTemplate.opsForValue().get(talkId);
-        if (!userSet.contains(userStarTalk.getCreateId())) {
-            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()+1);
-            userSet.add(userId);
+//        userStarTalk.setCreateTime(LocalDateTime.now());
+//        Set<Integer> userSet = (Set<Integer>)redisTemplate.opsForValue().get(talkId);
+//        if (!userSet.contains(userStarTalk.getUserId())) {
+//            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()+1);
+//            userSet.add(userId);
+//        } else {
+//            userSet.remove(userId);
+//            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()-1);
+//        }
+//        redisTemplate.opsForValue().set(talkId, userSet);
+
+        if (redisTemplate.opsForSet().isMember("talk:" + talkId + ":starBy", userId)) {
+            redisTemplate.opsForSet().remove("talk:" + talkId + ":starBy", userId);
+            // 写数据库
         } else {
-            userSet.remove(userId);
-            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()-1);
+            redisTemplate.opsForSet().add("talk:" + talkId + ":starBy", userId);
+            // 写数据库
         }
-        redisTemplate.opsForValue().set(talkId, userSet);
     }
 
     /**
