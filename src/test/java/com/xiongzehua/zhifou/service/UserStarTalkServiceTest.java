@@ -21,10 +21,17 @@ public class UserStarTalkServiceTest {
 
     @Test
     public void createUserStarTalkTest() {
-        UserStarTalk userStarTalk1 = new UserStarTalk().setUserId(1).setTalkId(1);
+        UserStarTalk userStarTalk1 = new UserStarTalk().setUserId(1).setTalkId(4);
         userStarTalkService.createUserStarTalk(userStarTalk1);
 
-        UserStarTalk userStarTalk2 = new UserStarTalk().setUserId(2).setTalkId(1);
+        UserStarTalk userStarTalk2 = new UserStarTalk().setUserId(2).setTalkId(4);
         userStarTalkService.createUserStarTalk(userStarTalk2);
+
+        UserStarTalk userStarTalk3 = new UserStarTalk().setUserId(3).setTalkId(4);
+        userStarTalkService.createUserStarTalk(userStarTalk3);
+
+        UserStarTalk userStarTalk4 = new UserStarTalk().setUserId(4).setTalkId(4);
+        userStarTalkService.createUserStarTalk(userStarTalk4);
+
     }
 }

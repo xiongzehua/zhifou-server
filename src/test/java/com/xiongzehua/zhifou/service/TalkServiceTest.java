@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -20,8 +21,7 @@ public class TalkServiceTest {
 
     @Test
     public void createTalkTest() {
-        Talk talk = new Talk();
-        talk.setContent("第四篇微博");
+        Talk talk = new Talk().setContent("第五篇微博").setUserId(2).setCreateTime(LocalDateTime.now());
         int result = talkService.createTalk(talk);
         log.info("result = " + result);
         log.info("talk = " + talk.toString());
@@ -38,6 +38,9 @@ public class TalkServiceTest {
 
     @Test
     public void listTalkByStar() {
-
+        List<Talk> listTalkByStar = talkService.listTalkByStar(1);
+        for (Talk talk : listTalkByStar) {
+            log.info("talk = " + talk.toString());
+        }
     }
 }

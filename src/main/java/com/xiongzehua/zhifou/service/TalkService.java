@@ -42,14 +42,15 @@ public class TalkService {
      * 对说说按照热度（点赞数）排序
      * @return 结果列表
      */
-    public List<Talk> listTalkByStar() {
-        ArrayList<Talk> list = new ArrayList<Talk>(10);
-        Set<Integer> talkIds = redisTemplate.opsForZSet().range("talk:staredNumber", -10, -1);
-        for (Integer id : talkIds) {
-            // TODO 查数据库通过talkIds拿到talk
-            // TODO 加入list
+    public List<Talk> listTalkByStar(Integer page) {
+        Set<Integer> talkIds = redisTemplate.opsForZSet().range("talk:staredNumber", -(10*page), -(10*page-9));
+        // TODO 查数据库通过talkIds拿到talk,加入list
+        ArrayList<Integer> list = new ArrayList<>(talkIds);
+        List<Talk> talkList = new ArrayList<>();
+        for (int i = 9; i > -1; i--) {
+            talkList.add(talkMapper.selectByPrimaryKey(list.get(i)));
         }
-        return list;
+        return talkList;
     }
 
 }
