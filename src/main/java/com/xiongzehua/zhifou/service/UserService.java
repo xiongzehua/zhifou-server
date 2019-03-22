@@ -5,7 +5,6 @@ import com.xiongzehua.zhifou.dao.UserMapper;
 import com.xiongzehua.zhifou.exception.BusinessException;
 import com.xiongzehua.zhifou.pojo.User;
 import com.xiongzehua.zhifou.util.TokenUtil;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
