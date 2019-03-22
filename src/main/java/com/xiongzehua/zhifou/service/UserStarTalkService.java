@@ -1,6 +1,5 @@
 package com.xiongzehua.zhifou.service;
 
-import com.xiongzehua.zhifou.config.RedisConfig;
 import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.pojo.UserStarTalk;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,6 @@ public class UserStarTalkService {
 
     @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
-    private RedisConfig redisConfig;
 
     /**
      * 对说说进行点赞
@@ -33,11 +30,11 @@ public class UserStarTalkService {
         userStarTalk.setCreateTime(LocalDateTime.now());
         Set<Integer> userSet = (Set<Integer>)redisTemplate.opsForValue().get(talkId);
         if (!userSet.contains(userStarTalk.getCreateId())) {
-            redisConfig.zadd(TALK, talkId, userSet.size()+1);
+            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()+1);
             userSet.add(userId);
         } else {
             userSet.remove(userId);
-            redisConfig.zadd(TALK, talkId, userSet.size()-1);
+            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()-1);
         }
         redisTemplate.opsForValue().set(talkId, userSet);
     }
@@ -49,7 +46,7 @@ public class UserStarTalkService {
      * @return 结果列表
      */
     public List<Talk> listTalkByStar(Integer star, Integer end) {
-        Set<Object> talkSet = redisConfig.zrevrangeWithScoresBytes(TALK, star, end);
+        Set<Object> talkSet = redisTemplate.opsForZSet().range(TALK, star, end);
         List<Talk> talkList = new ArrayList(talkSet);
         return talkList;
     }
