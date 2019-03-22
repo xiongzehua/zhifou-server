@@ -1,7 +1,5 @@
 package com.xiongzehua.zhifou.service;
 
-import com.xiongzehua.zhifou.config.RedisConfig;
-import com.xiongzehua.zhifou.dao.UserStarTalkMapper;
 import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.pojo.UserStarTalk;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -19,15 +16,6 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class UserStarTalkServiceTest {
-
-    public final static String TALK = "talk";
-
-    @Autowired
-    private UserStarTalkMapper userStarTalkMapper;
-    @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
-    private RedisConfig redisConfig;
 
     @Autowired
     private UserStarTalkService userStarTalkService;

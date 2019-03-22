@@ -1,7 +1,6 @@
 package com.xiongzehua.zhifou.service;
 
 import com.xiongzehua.zhifou.config.RedisConfig;
-import com.xiongzehua.zhifou.dao.UserStarTalkMapper;
 import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.pojo.UserStarTalk;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,15 @@ public class UserStarTalkService {
     public final static String TALK = "talk";
 
     @Autowired
-    private UserStarTalkMapper userStarTalkMapper;
-    @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
     private RedisConfig redisConfig;
 
+    /**
+     * 对说说进行点赞
+     * @param userStarTalk 点赞详情
+     * @return
+     */
     public void createUserStarTalk(UserStarTalk userStarTalk) {
         Integer userId = userStarTalk.getTalkId();
         Integer talkId = userStarTalk.getTalkId();
@@ -34,20 +36,18 @@ public class UserStarTalkService {
             redisConfig.zadd(TALK, talkId, userSet.size()+1);
             userSet.add(userId);
         } else {
-            this.cleanKeys(talkId.toString());
+            userSet.remove(userId);
             redisConfig.zadd(TALK, talkId, userSet.size()-1);
         }
         redisTemplate.opsForValue().set(talkId, userSet);
     }
 
-    public String cleanKeys(String key) {
-        Set<String> keys = redisTemplate.keys(key);
-        for (String k : keys) {
-            redisTemplate.delete(k);
-        }
-        return keys.toString();
-    }
-
+    /**
+     * 对说说按照热度（点赞数）排序
+     * @param star 开始编号
+     * @param end 结束编号
+     * @return 结果列表
+     */
     public List<Talk> listTalkByStar(Integer star, Integer end) {
         Set<Object> talkSet = redisConfig.zrevrangeWithScoresBytes(TALK, star, end);
         List<Talk> talkList = new ArrayList(talkSet);
