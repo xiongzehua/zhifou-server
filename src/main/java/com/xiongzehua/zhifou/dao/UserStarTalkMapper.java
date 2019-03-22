@@ -2,6 +2,7 @@ package com.xiongzehua.zhifou.dao;
 
 import com.xiongzehua.zhifou.pojo.UserStarTalk;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,4 +19,6 @@ public interface UserStarTalkMapper {
     int updateByPrimaryKeySelective(UserStarTalk record);
 
     int updateByPrimaryKey(UserStarTalk record);
+
+    int deleteByTalkIdAndUserId(@Param("talkId") Integer talkId, @Param("userId") Integer userId);
 }

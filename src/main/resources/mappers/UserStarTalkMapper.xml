@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.xiongzehua.zhifou.pojo.UserStarTalk">
       <id column="id" property="id" />
       <result column="talk_id" property="talkId" />
-      <result column="create_id" property="createId" />
+      <result column="user_id" property="userId" />
       <result column="create_time" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, talk_id, create_id, create_time
+    id, talk_id, user_id, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,7 +21,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
-    insert into user_star_talk (id, talk_id, create_id, 
+    insert into user_star_talk (id, talk_id, user_id,
       create_time)
     values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP})
@@ -36,7 +36,7 @@
         talk_id,
       </if>
       <if test="userId != null">
-        create_id,
+        user_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -64,7 +64,7 @@
         talk_id = #{talkId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        create_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -75,8 +75,13 @@
   <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
     update user_star_talk
     set talk_id = #{talkId,jdbcType=INTEGER},
-      create_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <delete id="deleteByTalkIdAndUserId" parameterType="java.lang.Integer">
+    delete from user_star_talk
+    where talk_id = #{talkId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER}
+  </delete>
 </mapper>
