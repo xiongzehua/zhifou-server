@@ -48,8 +48,8 @@ public class UserStarTalkService {
         return keys.toString();
     }
 
-    public List<Talk> listTalkByStar() {
-        Set<Object> talkSet = redisConfig.zrevrangeWithScoresBytes(TALK, 1, 100);
+    public List<Talk> listTalkByStar(Integer star, Integer end) {
+        Set<Object> talkSet = redisConfig.zrevrangeWithScoresBytes(TALK, star, end);
         List<Talk> talkList = new ArrayList(talkSet);
         return talkList;
     }
