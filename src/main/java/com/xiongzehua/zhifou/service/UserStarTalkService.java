@@ -30,24 +30,14 @@ public class UserStarTalkService {
     public void createUserStarTalk(UserStarTalk userStarTalk) {
         Integer userId = userStarTalk.getUserId();
         Integer talkId = userStarTalk.getTalkId();
-//        userStarTalk.setCreateTime(LocalDateTime.now());
-//        Set<Integer> userSet = (Set<Integer>)redisTemplate.opsForValue().get(talkId);
-//        if (!userSet.contains(userStarTalk.getUserId())) {
-//            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()+1);
-//            userSet.add(userId);
-//        } else {
-//            userSet.remove(userId);
-//            redisTemplate.opsForZSet().add(TALK, talkId, userSet.size()-1);
-//        }
-//        redisTemplate.opsForValue().set(talkId, userSet);
-
-        if (redisTemplate.opsForSet().isMember("talk:" + talkId + ":starBy", userId)) {
-            redisTemplate.opsForSet().remove("talk:" + talkId + ":starBy", userId);
+        if (redisTemplate.opsForSet().isMember("talk:" + talkId + ":staredBy", userId)) {
+            redisTemplate.opsForSet().remove("talk:" + talkId + ":staredBy", userId);
             // 写数据库
         } else {
-            redisTemplate.opsForSet().add("talk:" + talkId + ":starBy", userId);
+            redisTemplate.opsForSet().add("talk:" + talkId + ":staredBy", userId);
             // 写数据库
         }
+        redisTemplate.opsForZSet().add("talk:staredNumber", talkId, redisTemplate.opsForSet().size("talk:" + talkId + ":staredBy"));
     }
 
     /**
