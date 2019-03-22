@@ -1,6 +1,6 @@
 package com.xiongzehua.zhifou.service;
 
-import com.xiongzehua.zhifou.config.RedisConfig;
+import com.xiongzehua.zhifou.dao.UserStarTalkMapper;
 import com.xiongzehua.zhifou.pojo.Talk;
 import com.xiongzehua.zhifou.pojo.UserStarTalk;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class UserStarTalkService {
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
-    private RedisConfig redisConfig;
+    private UserStarTalkMapper userStarTalkMapper;
 
     /**
      * 对说说进行点赞
@@ -33,9 +33,12 @@ public class UserStarTalkService {
         if (redisTemplate.opsForSet().isMember("talk:" + talkId + ":staredBy", userId)) {
             redisTemplate.opsForSet().remove("talk:" + talkId + ":staredBy", userId);
             // 写数据库
+            userStarTalkMapper.deleteByTalkIdAndUserId(talkId, userId);
         } else {
             redisTemplate.opsForSet().add("talk:" + talkId + ":staredBy", userId);
             // 写数据库
+            userStarTalk.setCreateTime(LocalDateTime.now());
+            userStarTalkMapper.insert(userStarTalk);
         }
         redisTemplate.opsForZSet().add("talk:staredNumber", talkId, redisTemplate.opsForSet().size("talk:" + talkId + ":staredBy"));
     }
