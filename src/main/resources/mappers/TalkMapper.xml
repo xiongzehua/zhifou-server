@@ -93,8 +93,9 @@
 
   <select id="listTalkByTime" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    talk.id, talk.content, talk.user_id, talk.create_time, talk.update_time, user.name
     from talk
-    order by create_time desc
+    left join user on user.id = talk.user_id
+    order by id desc
   </select>
 </mapper>

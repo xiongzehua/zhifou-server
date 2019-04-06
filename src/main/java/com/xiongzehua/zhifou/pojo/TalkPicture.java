@@ -15,5 +15,5 @@ public class TalkPicture {
 
     private Integer talkId;
 
-    private Integer pictureURL;
+    private String pictureURL;
 }

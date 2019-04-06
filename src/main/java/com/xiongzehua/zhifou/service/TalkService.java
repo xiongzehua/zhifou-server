@@ -1,21 +1,31 @@
 package com.xiongzehua.zhifou.service;
 
 import com.xiongzehua.zhifou.dao.TalkMapper;
+import com.xiongzehua.zhifou.dao.TalkPictureMapper;
 import com.xiongzehua.zhifou.pojo.Talk;
+import com.xiongzehua.zhifou.pojo.TalkPicture;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class TalkService {
 
     @Autowired
     private TalkMapper talkMapper;
+    @Autowired
+    private TalkPictureMapper talkPictureMapper;
     @Autowired
     RedisTemplate redisTemplate;
 
@@ -53,6 +63,37 @@ public class TalkService {
             talkList.add(talkMapper.selectByPrimaryKey(list.get(i)));
         }
         return talkList;
+    }
+
+    /**
+     * 上传图片
+     */
+    public Integer upload(MultipartFile file, Integer id) {
+        if (!file.isEmpty()) {
+            try {
+                String fileName = file.getOriginalFilename();  // 文件名
+                String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
+                String filePath = "C://pic"; // 上传后的路径
+                fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + fileName; // 新文件名
+                File dest = new File(filePath);
+                if (!dest.getParentFile().exists()) {
+                    dest.getParentFile().mkdirs();
+                }
+                file.transferTo(dest);
+                String filename = "/pic" + fileName;
+                TalkPicture talkPicture = new TalkPicture().setTalkId(id).setPictureURL(filename);
+                Talk talk = talkMapper.selectByPrimaryKey(id);
+                int result = talkPictureMapper.insert(talkPicture);
+                if (result > 0) {
+                    talk.getTalkPictures().add(talkPicture);
+                }
+                talkMapper.updateByPrimaryKey(talk);
+            } catch(IOException e) {
+                log.info("文件上传异常");
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 
 }
