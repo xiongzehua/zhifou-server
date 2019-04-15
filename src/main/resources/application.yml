@@ -1,30 +1,30 @@
-#server:
-#    tomcat:
-#        uri-encoding: UTF-8
-#        max-threads: 1000
-#        min-spare-threads: 30
-#    port: 80
-#    connection-timeout: 500ms
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 18080
+  connection-timeout: 500ms
 
 spring:
-    jackson:
-      date-format:
-    profiles:
-        active: dev
+  jackson:
+    date-format:
+  profiles:
+    active: dev
 logging:
   com.xiongzehua.zhifou.dao: debug
 
 pagehelper:
-    helperDialect: mysql
-    page-size-zero: true
-    reasonable: true
-    params: pageNum=start;pageSize=limit;pageSizeZero=zero;reasonable=heli;count=contsql
-    row-bounds-with-count: true
+  helperDialect: mysql
+  page-size-zero: true
+  reasonable: true
+  params: pageNum=start;pageSize=limit;pageSizeZero=zero;reasonable=heli;count=contsql
+  row-bounds-with-count: true
 
 #    mail:
 #        host: smtp.exmail.qq.com
 #        protocol: smtp
-#        username: xieyuqing@hengqijy.com
+#        username: 1529548826@qq.com
 #        password: King199092
 #        properties:
 #            mail:
