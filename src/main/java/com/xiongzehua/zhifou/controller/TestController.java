@@ -22,17 +22,6 @@ import java.util.LinkedHashMap;
 public class TestController {
 
     /**
-     * 若参数中不带HttpSession httpSession
-     * 不会设置Set-Cookie
-     * @return
-     */
-    @GetMapping("/hello")
-    @ResponseBody
-    public Response hello() {
-        return Response.success("hello");
-    }
-
-    /**
      * 若参数中带HttpSession httpSession
      * 第一次请求的response中会带
      * Set-Cookie: JSESSIONID=39C09DCD23FD3261280AA9AE8F0A4B1D; Path=/; HttpOnly
@@ -130,5 +119,11 @@ public class TestController {
         }
 
         return Response.success(hashMap);
+    }
+
+    @GetMapping("/hello")
+    @ResponseBody
+    public Response hello() {
+        return Response.success("hello app");
     }
 }

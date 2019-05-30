@@ -45,3 +45,8 @@ spring:
         log4j:
           connection-log-enabled: true
       useGlobalDataSourceStat: true
+  rabbitmq:
+    host: 212.64.15.67
+    port: 5672
+    username: guest
+    password: guest
