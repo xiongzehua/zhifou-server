@@ -1,12 +1,9 @@
 package com.xiongzehua.freetalk.dao;
 
-import com.xiongzehua.freetalk.pojo.UserStarTalk;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import com.xiongzehua.freetalk.entity.UserStarTalk;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Mapper
 public interface UserStarTalkMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -19,6 +16,4 @@ public interface UserStarTalkMapper {
     int updateByPrimaryKeySelective(UserStarTalk record);
 
     int updateByPrimaryKey(UserStarTalk record);
-
-    int deleteByTalkIdAndUserId(@Param("talkId") Integer talkId, @Param("userId") Integer userId);
 }

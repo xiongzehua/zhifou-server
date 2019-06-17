@@ -1,4 +1,4 @@
-package com.xiongzehua.freetalk.pojo;
+package com.xiongzehua.freetalk.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

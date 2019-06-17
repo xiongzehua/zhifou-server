@@ -1,11 +1,9 @@
 package com.xiongzehua.freetalk.dao;
 
-import com.xiongzehua.freetalk.pojo.TalkPicture;
-import org.apache.ibatis.annotations.Mapper;
+import com.xiongzehua.freetalk.entity.TalkPicture;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Mapper
 public interface TalkPictureMapper {
 
     int deleteByPrimaryKey(Integer id);

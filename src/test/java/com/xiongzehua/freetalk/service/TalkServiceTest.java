@@ -1,6 +1,6 @@
 package com.xiongzehua.freetalk.service;
 
-import com.xiongzehua.freetalk.pojo.Talk;
+import com.xiongzehua.freetalk.entity.Talk;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

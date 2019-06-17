@@ -1,7 +1,7 @@
 package com.xiongzehua.freetalk.controller;
 
 import com.xiongzehua.freetalk.common.Response;
-import com.xiongzehua.freetalk.pojo.User;
+import com.xiongzehua.freetalk.entity.User;
 import com.xiongzehua.freetalk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

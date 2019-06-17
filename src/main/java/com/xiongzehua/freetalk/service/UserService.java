@@ -3,9 +3,9 @@ package com.xiongzehua.freetalk.service;
 import com.xiongzehua.freetalk.common.BusinessStatus;
 import com.xiongzehua.freetalk.dao.UserMapper;
 import com.xiongzehua.freetalk.exception.BusinessException;
-import com.xiongzehua.freetalk.pojo.User;
-import com.xiongzehua.freetalk.util.TokenUtil;
-import org.apache.shiro.crypto.hash.Sha256Hash;
+import com.xiongzehua.freetalk.entity.User;
+import com.xiongzehua.freetalk.utils.MapperUtils;
+import com.xiongzehua.freetalk.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class UserService {
         if (null != userMapper.getByEmail(user.getEmail())) {
             throw new BusinessException(BusinessStatus.ACCOUNT_EMAIL_USED);
         }
-        user.setPassword(new Sha256Hash(user.getPassword()).toHex())
+        user.setPassword(MapperUtils.stringToSHA256(user.getPassword()))
                 .setCreateTime(LocalDateTime.now());
         userMapper.insert(user);
         return new User().setId(user.getId());
@@ -54,7 +54,7 @@ public class UserService {
         if (user1 == null) {
             throw new BusinessException(BusinessStatus.ACCOUNT_NOt_EXIST);
         }
-        if (!user1.getPassword().equals(new Sha256Hash(user.getPassword()).toHex())) {
+        if (!user1.getPassword().equals(MapperUtils.stringToSHA256(user.getPassword()))) {
             throw new BusinessException(BusinessStatus.ACCOUNT_WRONG_PASSWORD);
         }
         try {

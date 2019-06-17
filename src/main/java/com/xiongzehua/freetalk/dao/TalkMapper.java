@@ -1,13 +1,11 @@
 package com.xiongzehua.freetalk.dao;
 
-import com.xiongzehua.freetalk.pojo.Talk;
-import org.apache.ibatis.annotations.Mapper;
+import com.xiongzehua.freetalk.entity.Talk;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-@Mapper
 public interface TalkMapper {
     int deleteByPrimaryKey(Integer id);
 

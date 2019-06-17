@@ -1,4 +1,4 @@
-package com.xiongzehua.freetalk.pojo;
+package com.xiongzehua.freetalk.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 问题实体类
  * @author xiongzehua
- * @date 2019/2/15 15:38:49
+ * @date 2019-02-15 15:38:49
  */
 
 @Data

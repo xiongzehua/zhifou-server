@@ -2,10 +2,8 @@ package com.xiongzehua.freetalk.DaoTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xiongzehua.freetalk.dao.ProblemMapper;
 import com.xiongzehua.freetalk.dao.UserMapper;
-import com.xiongzehua.freetalk.pojo.User;
-import org.apache.shiro.SecurityUtils;
+import com.xiongzehua.freetalk.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +52,7 @@ public class PromblemMapperTest {
 
     @Test
     public void test4() {
-        System.out.println("user = " + (User) SecurityUtils.getSubject().getPrincipal());
+//        System.out.println("user = " + (User) SecurityUtils.getSubject().getPrincipal());
     }
 
 }

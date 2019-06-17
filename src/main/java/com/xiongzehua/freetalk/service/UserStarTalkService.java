@@ -1,7 +1,7 @@
 package com.xiongzehua.freetalk.service;
 
 import com.xiongzehua.freetalk.dao.UserStarTalkMapper;
-import com.xiongzehua.freetalk.pojo.UserStarTalk;
+import com.xiongzehua.freetalk.entity.UserStarTalk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,6 @@ public class UserStarTalkService {
         if (redisTemplate.opsForSet().isMember("talk:" + talkId + ":staredBy", userId)) {
             redisTemplate.opsForSet().remove("talk:" + talkId + ":staredBy", userId);
             // TODO 写数据库流水
-            userStarTalkMapper.deleteByTalkIdAndUserId(talkId, userId);
         } else {
             redisTemplate.opsForSet().add("talk:" + talkId + ":staredBy", userId);
             // TODO 写数据库流水

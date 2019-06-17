@@ -1,4 +1,4 @@
-package com.xiongzehua.freetalk.util;
+package com.xiongzehua.freetalk.utils;
 
 public class StringUtils {
 

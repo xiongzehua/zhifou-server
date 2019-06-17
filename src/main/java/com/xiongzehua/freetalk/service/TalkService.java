@@ -2,8 +2,8 @@ package com.xiongzehua.freetalk.service;
 
 import com.xiongzehua.freetalk.dao.TalkMapper;
 import com.xiongzehua.freetalk.dao.TalkPictureMapper;
-import com.xiongzehua.freetalk.pojo.Talk;
-import com.xiongzehua.freetalk.pojo.TalkPicture;
+import com.xiongzehua.freetalk.entity.Talk;
+import com.xiongzehua.freetalk.entity.TalkPicture;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
