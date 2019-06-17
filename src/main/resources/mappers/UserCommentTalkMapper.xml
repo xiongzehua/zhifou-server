@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiongzehua.zhifou.dao.UserCommentTalkMapper">
-  <resultMap id="BaseResultMap" type="com.xiongzehua.zhifou.pojo.UserCommentTalk">
+<mapper namespace="com.xiongzehua.freetalk.dao.UserCommentTalkMapper">
+  <resultMap id="BaseResultMap" type="com.xiongzehua.freetalk.pojo.UserCommentTalk">
       <id column="id" property="id" />
       <result column="talk_id" property="talkId" />
       <result column="create_id" property="createId" />
@@ -21,13 +21,13 @@
     delete from user_comment_talk
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
+  <insert id="insert" parameterType="com.xiongzehua.freetalk.pojo.UserCommentTalk">
     insert into user_comment_talk (id, talk_id, create_id, 
       content, create_time)
     values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
+  <insert id="insertSelective" parameterType="com.xiongzehua.freetalk.pojo.UserCommentTalk">
     insert into user_comment_talk
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.freetalk.pojo.UserCommentTalk">
     update user_comment_talk
     <set>
       <if test="talkId != null">
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.UserCommentTalk">
+  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.freetalk.pojo.UserCommentTalk">
     update user_comment_talk
     set talk_id = #{talkId,jdbcType=INTEGER},
       create_id = #{userId,jdbcType=INTEGER},

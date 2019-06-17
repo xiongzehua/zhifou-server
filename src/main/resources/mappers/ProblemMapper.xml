@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiongzehua.zhifou.dao.ProblemMapper">
-  <resultMap id="BaseResultMap" type="com.xiongzehua.zhifou.pojo.Talk">
+<mapper namespace="com.xiongzehua.freetalk.dao.ProblemMapper">
+  <resultMap id="BaseResultMap" type="com.xiongzehua.freetalk.pojo.Talk">
     <id column="id" property="id" />
     <result column="title" property="title" />
     <result column="user_id" property="userId" />
@@ -27,7 +27,7 @@
     delete from talk
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.Talk">
+  <insert id="insert" parameterType="com.xiongzehua.freetalk.pojo.Talk">
     insert into talk (id, title, user_id,
       create_time, update_time, content
       )
@@ -35,7 +35,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xiongzehua.zhifou.pojo.Talk">
+  <insert id="insertSelective" parameterType="com.xiongzehua.freetalk.pojo.Talk">
     insert into talk
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -78,7 +78,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.zhifou.pojo.Talk">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.freetalk.pojo.Talk">
     update talk
     <set>
       <if test="title != null">
@@ -99,7 +99,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiongzehua.zhifou.pojo.Talk">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiongzehua.freetalk.pojo.Talk">
     update talk
     set title = #{title,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
@@ -108,7 +108,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.Talk">
+  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.freetalk.pojo.Talk">
     update talk
     set title = #{title,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},

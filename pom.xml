@@ -8,11 +8,11 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.xiongzehua</groupId>
-    <artifactId>zhifou</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>zhifou</name>
-    <description>zhifou</description>
+    <groupId>com.xiongzehua.freetalk</groupId>
+    <artifactId>freetalk</artifactId>
+    <version>1.0.0</version>
+    <name>freetalk</name>
+    <description>freetalk</description>
 
     <properties>
         <java.version>1.8</java.version>

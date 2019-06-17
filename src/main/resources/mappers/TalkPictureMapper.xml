@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiongzehua.zhifou.dao.TalkPictureMapper">
-    <resultMap id="BaseResultMap" type="com.xiongzehua.zhifou.pojo.TalkPicture">
+<mapper namespace="com.xiongzehua.freetalk.dao.TalkPictureMapper">
+    <resultMap id="BaseResultMap" type="com.xiongzehua.freetalk.pojo.TalkPicture">
         <id column="id" property="id"/>
         <result column="talk_id" property="talkId"/>
         <result column="picture_URL" property="pictureURL"/>
@@ -19,12 +19,12 @@
     delete from talk_picture
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" keyProperty="id" parameterType="com.xiongzehua.zhifou.pojo.User" useGeneratedKeys="true">
+    <insert id="insert" keyProperty="id" parameterType="com.xiongzehua.freetalk.pojo.User" useGeneratedKeys="true">
     insert into talk_picture (id, talk_id, picture_URL)
     values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{pictureURL,jdbcType=VARCHAR})
   </insert>
 
-    <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.User">
+    <update id="updateByPrimaryKey" parameterType="com.xiongzehua.freetalk.pojo.User">
     update talk_picture
     set talk_id = #{talkId,jdbcType=VARCHAR},
       picture_URL = #{pictureURL,jdbcType=VARCHAR}

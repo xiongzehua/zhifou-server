@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiongzehua.zhifou.dao.ProblemUserMapper">
+<mapper namespace="com.xiongzehua.freetalk.dao.ProblemUserMapper">
   
   <!-- 实体映射 -->
-  <resultMap id="BaseResultMap" type="com.xiongzehua.zhifou.pojo.ProblemUser">
+  <resultMap id="BaseResultMap" type="com.xiongzehua.freetalk.pojo.ProblemUser">
     <id column="id" property="id" />
     <result column="problem_id" property="problemId" />
     <result column="user_id" property="userId" />
@@ -38,7 +38,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.ProblemUser">
+  <insert id="insert" parameterType="com.xiongzehua.freetalk.pojo.ProblemUser">
     insert into problem_user (id, problem_id, user_id, like, collect, comment, content, like_time, collect_time, comment_time)
     values (#{id,jdbcType=INTEGER}, #{problemId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{like,jdbcType=INTEGER}, #{collect,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER},
@@ -47,7 +47,7 @@
       )
   </insert>
 
-  <insert id="insertSelective" parameterType="com.xiongzehua.zhifou.pojo.ProblemUser">
+  <insert id="insertSelective" parameterType="com.xiongzehua.freetalk.pojo.ProblemUser">
 	insert into problem_user
 	<trim prefix="(" suffix=")" suffixOverrides=",">
 	  <if test="id != null">
@@ -115,7 +115,7 @@
 	</trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.zhifou.pojo.ProblemUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.freetalk.pojo.ProblemUser">
 	update problem_user
 	<set>
 	  <if test="problemId != null">
@@ -149,7 +149,7 @@
 	where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.ProblemUser">
+  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.freetalk.pojo.ProblemUser">
     update problem_user
     id, problem_id, user_id, like, collect, comment, content, like_time, collect_time, comment_time
     set problem_id = #{title,jdbcType=INTEGER},

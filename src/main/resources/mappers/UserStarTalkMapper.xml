@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiongzehua.zhifou.dao.UserStarTalkMapper">
-  <resultMap id="BaseResultMap" type="com.xiongzehua.zhifou.pojo.UserStarTalk">
+<mapper namespace="com.xiongzehua.freetalk.dao.UserStarTalkMapper">
+  <resultMap id="BaseResultMap" type="com.xiongzehua.freetalk.pojo.UserStarTalk">
       <id column="id" property="id" />
       <result column="talk_id" property="talkId" />
       <result column="user_id" property="userId" />
@@ -20,13 +20,13 @@
     delete from user_star_talk
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
+  <insert id="insert" parameterType="com.xiongzehua.freetalk.pojo.UserStarTalk">
     insert into user_star_talk (id, talk_id, user_id,
       create_time)
     values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
+  <insert id="insertSelective" parameterType="com.xiongzehua.freetalk.pojo.UserStarTalk">
     insert into user_star_talk
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiongzehua.freetalk.pojo.UserStarTalk">
     update user_star_talk
     <set>
       <if test="talkId != null">
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.zhifou.pojo.UserStarTalk">
+  <update id="updateByPrimaryKey" parameterType="com.xiongzehua.freetalk.pojo.UserStarTalk">
     update user_star_talk
     set talk_id = #{talkId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
