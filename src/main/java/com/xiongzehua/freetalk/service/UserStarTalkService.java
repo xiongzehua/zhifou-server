@@ -1,6 +1,5 @@
 package com.xiongzehua.freetalk.service;
 
-import com.xiongzehua.freetalk.dao.UserStarTalkMapper;
 import com.xiongzehua.freetalk.entity.UserStarTalk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,8 +12,6 @@ public class UserStarTalkService {
 
     @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
-    private UserStarTalkMapper userStarTalkMapper;
 
     /**
      * 对说说进行点赞
@@ -31,7 +28,6 @@ public class UserStarTalkService {
             redisTemplate.opsForSet().add("talk:" + talkId + ":staredBy", userId);
             // TODO 写数据库流水
             userStarTalk.setCreateTime(LocalDateTime.now());
-            userStarTalkMapper.insert(userStarTalk);
         }
         redisTemplate.opsForZSet().add("talk:staredNumber", talkId, redisTemplate.opsForSet().size("talk:" + talkId + ":staredBy"));
     }

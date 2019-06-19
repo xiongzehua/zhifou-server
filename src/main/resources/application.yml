@@ -12,7 +12,11 @@ spring:
   profiles:
     active: dev
 logging:
-  com.xiongzehua.zhifou.dao: debug
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
 
 pagehelper:
   helperDialect: mysql

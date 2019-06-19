@@ -3,6 +3,7 @@ package com.xiongzehua.freetalk.entity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +17,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class Talk implements Serializable {
-    // mysql字段
-    private Integer id;
+    private Long id;
 
     private Integer userId;
 

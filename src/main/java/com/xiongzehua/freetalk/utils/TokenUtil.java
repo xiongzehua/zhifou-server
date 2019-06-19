@@ -26,7 +26,7 @@ public class TokenUtil {
      * @param userId   用户id
      * @param password 生成摘要的用户密码
      */
-    public static String create(Integer userId, String password) throws UnsupportedEncodingException {
+    public static String create(Long userId, String password) throws UnsupportedEncodingException {
         String token = null;
         token = JWT.create()
                 .withIssuer("freetalk")

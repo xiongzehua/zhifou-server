@@ -1,7 +1,6 @@
 package com.xiongzehua.freetalk.service;
 
 import com.xiongzehua.freetalk.common.BusinessStatus;
-import com.xiongzehua.freetalk.dao.UserMapper;
 import com.xiongzehua.freetalk.exception.BusinessException;
 import com.xiongzehua.freetalk.entity.User;
 import com.xiongzehua.freetalk.utils.MapperUtils;
@@ -24,8 +23,6 @@ import java.time.LocalDateTime;
 public class UserService {
 
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     RedisTemplate redisTemplate;
 
     /**
@@ -35,12 +32,11 @@ public class UserService {
      */
     @Transactional
     public User signUp(User user) {
-        if (null != userMapper.getByEmail(user.getEmail())) {
+        if (null != null) {
             throw new BusinessException(BusinessStatus.ACCOUNT_EMAIL_USED);
         }
         user.setPassword(MapperUtils.stringToSHA256(user.getPassword()))
                 .setCreateTime(LocalDateTime.now());
-        userMapper.insert(user);
         return new User().setId(user.getId());
     }
 
@@ -50,7 +46,7 @@ public class UserService {
      * @return
      */
     public User doSign(User user) {
-        User user1 = userMapper.getByEmail(user.getEmail());
+        User user1 = null;
         if (user1 == null) {
             throw new BusinessException(BusinessStatus.ACCOUNT_NOt_EXIST);
         }
@@ -68,7 +64,7 @@ public class UserService {
 
     public User updateUser(User user) {
         user.setUpdateTime(LocalDateTime.now());
-        int result = userMapper.updateByPrimaryKeySelective(user);
+        int result = 0;
         if (result < 1) {
             throw new BusinessException(BusinessStatus.UPDATE_FAILURE);
         } else {
@@ -77,7 +73,7 @@ public class UserService {
     }
 
     public User getUser(Integer id) {
-        User user = userMapper.selectByPrimaryKey(id);
+        User user = null;
         if (null == user) {
             throw new BusinessException(BusinessStatus.GET_FAILURE);
         } else {

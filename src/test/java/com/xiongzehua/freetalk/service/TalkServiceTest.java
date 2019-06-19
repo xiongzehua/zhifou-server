@@ -19,7 +19,6 @@ public class TalkServiceTest {
     @Autowired
     private TalkService talkService;
 
-    @Test
     public void createTalkTest() {
         Talk talk = new Talk().setContent("第五篇微博").setUserId(2).setCreateTime(LocalDateTime.now());
         int result = talkService.createTalk(talk);
@@ -27,7 +26,6 @@ public class TalkServiceTest {
         log.info("talk = " + talk.toString());
     }
 
-    @Test
     public void listTalkByTimeTest() {
         List<Talk> talkList = talkService.listTalkByTime();
         log.info("talkList.size() = " + talkList.size());
@@ -36,7 +34,6 @@ public class TalkServiceTest {
         }
     }
 
-    @Test
     public void listTalkByStar() {
         List<Talk> listTalkByStar = talkService.listTalkByStar(1);
         for (Talk talk : listTalkByStar) {

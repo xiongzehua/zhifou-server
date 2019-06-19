@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 public class TokenUtilTest {
     @Test
     public void test1() throws UnsupportedEncodingException {
-        String token = TokenUtil.create(1, "123456");
+        String token = TokenUtil.create(1L, "123456");
         System.out.println(token);
         //Assert.assertEquals("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiemhpZm91IiwiZXhwIjoxNTUwNTk1OTM1fQ.Iaxfw7ITg6x0iqOnqXaxe5sBjRlVrjYU1FdSIMLZSlc", token);
     }

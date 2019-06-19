@@ -1,7 +1,5 @@
 package com.xiongzehua.freetalk.service;
 
-import com.xiongzehua.freetalk.dao.TalkMapper;
-import com.xiongzehua.freetalk.dao.TalkPictureMapper;
 import com.xiongzehua.freetalk.entity.Talk;
 import com.xiongzehua.freetalk.entity.TalkPicture;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +20,7 @@ import java.util.Set;
 @Slf4j
 public class TalkService {
 
-    @Autowired
-    private TalkMapper talkMapper;
-    @Autowired
-    private TalkPictureMapper talkPictureMapper;
+
     @Autowired
     RedisTemplate redisTemplate;
 
@@ -35,8 +30,7 @@ public class TalkService {
      * @return
      */
     public Integer createTalk(Talk talk) {
-        talk.setCreateTime(LocalDateTime.now());
-        return talkMapper.insert(talk);
+        return 0;
     }
 
     /**
@@ -45,7 +39,7 @@ public class TalkService {
      */
     public List<Talk> listTalkByTime() {
         // TODO 点赞数 评论数 用户信息
-        List<Talk> talkList = talkMapper.listTalkByTime();
+        List<Talk> talkList = null;
         return talkList;
     }
 
@@ -60,7 +54,7 @@ public class TalkService {
         ArrayList<Integer> list = new ArrayList<>(talkIds);
         List<Talk> talkList = new ArrayList<>();
         for (int i = 9; i > -1; i--) {
-            talkList.add(talkMapper.selectByPrimaryKey(list.get(i)));
+            talkList.add(null);
         }
         return talkList;
     }
@@ -82,12 +76,11 @@ public class TalkService {
                 file.transferTo(dest);
                 String filename = "/pic" + fileName;
                 TalkPicture talkPicture = new TalkPicture().setTalkId(id).setPictureURL(filename);
-                Talk talk = talkMapper.selectByPrimaryKey(id);
-                int result = talkPictureMapper.insert(talkPicture);
+                Talk talk = null;
+                int result = 0;
                 if (result > 0) {
                     talk.getTalkPictures().add(talkPicture);
                 }
-                talkMapper.updateByPrimaryKey(talk);
             } catch(IOException e) {
                 log.info("文件上传异常");
                 e.printStackTrace();

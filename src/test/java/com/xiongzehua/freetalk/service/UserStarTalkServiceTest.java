@@ -16,7 +16,6 @@ public class UserStarTalkServiceTest {
     @Autowired
     private UserStarTalkService userStarTalkService;
 
-    @Test
     public void createUserStarTalkTest() {
         UserStarTalk userStarTalk1 = new UserStarTalk().setUserId(1).setTalkId(4);
         userStarTalkService.createUserStarTalk(userStarTalk1);
