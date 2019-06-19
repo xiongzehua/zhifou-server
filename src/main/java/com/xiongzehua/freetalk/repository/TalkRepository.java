@@ -7,11 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TalkRepository extends JpaRepository<Talk, Integer> {
+public interface TalkRepository extends JpaRepository<Talk, Long> {
 
     Talk findByContent(String content);
-
-    Talk findByOne(Integer id);
 
     @Query("from Talk t where t.content=:content")
     Talk findTalk(@Param("content") String content);

@@ -42,7 +42,7 @@ public class TalkRepositoryTest {
      */
     @Test
     public void test4() {
-        Pageable pageable = PageRequest.of(1, 3, Sort.Direction.DESC, "name");
+        Pageable pageable = PageRequest.of(1, 3, Sort.Direction.DESC, "content");
         System.out.println(talkRepository.findAll(pageable).getContent());
     }
 }
