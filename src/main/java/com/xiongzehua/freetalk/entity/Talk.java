@@ -1,10 +1,10 @@
 package com.xiongzehua.freetalk.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,37 +18,30 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Entity
-@Table(name = "talk")
 public class Talk implements Serializable {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(name = "user_id")
+    @TableField(value = "userId")
     private Long userId;
 
-    @Column(name = "create_time")
+    @TableField(value = "create_time")
     private LocalDateTime createTime;
 
-    @Column(name = "update_time")
+    @TableField(value = "update_time")
     private LocalDateTime updateTime;
 
-    @Column(name = "content")
     private String content;
 
-    @Column(name = "star_number")
     private Integer starNumber;
 
-    @Column(name = "comment_number")
     private Integer commentNumber;
 
     // 关联字段
-    @Transient
+    @TableField(exist=false)
     private User user;
 
-    @Transient
+    @TableField(exist=false)
     private List<TalkPicture> talkPictures; // TODO 要不要加缓存？ url缓存好做，图片缓存咋做？
 
 }

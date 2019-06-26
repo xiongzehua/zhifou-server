@@ -41,8 +41,6 @@ spring:
         log4j:
           connection-log-enabled: true
       useGlobalDataSourceStat: true
-  jpa:
-    show-sql: true
 
   rabbitmq:
     host: 212.64.15.67

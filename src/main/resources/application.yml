@@ -13,35 +13,10 @@ spring:
     active: dev
 logging:
   level:
+    com:
+      xiongzehua: debug
     org:
-      hibernate:
-        SQL: DEBUG
+      mybatis: trace
 
-
-pagehelper:
-  helperDialect: mysql
-  page-size-zero: true
-  reasonable: true
-  params: pageNum=start;pageSize=limit;pageSizeZero=zero;reasonable=heli;count=contsql
-  row-bounds-with-count: true
-
-#    mail:
-#        host: smtp.exmail.qq.com
-#        protocol: smtp
-#        username: 1529548826@qq.com
-#        password: King199092
-#        properties:
-#            mail:
-#                smtp:
-#                    starttls:
-#                        auth: true
-#                        enable: true
-#                        required: true
-
-
-#pagehelper:
-#    helperDialect: mysql
-#    page-size-zero: true
-#    reasonable: true
-#    params: pageNum=start;pageSize=limit;pageSizeZero=zero;reasonable=heli;count=contsql
-#    row-bounds-with-count: true
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
