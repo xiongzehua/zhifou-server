@@ -53,5 +53,27 @@ public class TalkMapperTest {
         System.out.println(talkMapper.insert(talk));
     }
 
+    @Test
+    public void testAdd() {
+        int result = talkMapper.insert(new Talk().setContent("喵喵的说说").setUserId(4L).setStarNumber(100).setCommentNumber(200).setCreateTime(LocalDateTime.now()).setUpdateTime(LocalDateTime.now()));
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    public void testUpdate() {
+        int result = talkMapper.updateById(new Talk().setId(4L).setContent("喵喵的更新说说"));
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    public void testSelect() {
+        System.out.println(talkMapper.selectById(4L));
+    }
+
+    @Test
+    public void testDelete() {
+        int result = talkMapper.deleteById(3L);
+        System.out.println("result = " + result);
+    }
 
 }
