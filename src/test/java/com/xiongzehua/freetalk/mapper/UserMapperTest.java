@@ -52,7 +52,7 @@ public class UserMapperTest {
     @Test
     public void test1() {
         QueryWrapper condition = new QueryWrapper();
-        condition.gt("user_name", "过么么么么");
+        condition.eq("user_name", "过么么么么");
         System.out.println(userMapper.selectList(condition));
     }
 }
