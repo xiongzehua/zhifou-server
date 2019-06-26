@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TalkMapper extends BaseMapper<Talk> {
-    void increaseStar(Long talkId);
+    int increaseStar(Long talkId);
 }

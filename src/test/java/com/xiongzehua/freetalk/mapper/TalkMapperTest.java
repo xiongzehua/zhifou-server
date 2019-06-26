@@ -43,7 +43,7 @@ public class TalkMapperTest {
 
     @Test
     public void test3() {
-        talkMapper.increaseStar(1L);
+        talkMapper.increaseStar(2L);
     }
 
     @Test
