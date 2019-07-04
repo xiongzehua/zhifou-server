@@ -89,4 +89,9 @@ public class TalkService {
         return 0;
     }
 
+
+    public void aaaa() {
+
+    }
+
 }
